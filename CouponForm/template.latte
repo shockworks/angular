@@ -1,0 +1,18 @@
+<section class="voucher-entry col-md-6" ng-controller="CouponFormController">
+    <h4>Slevový kód/Dárkový šek</h4>
+    <div ng-switch on="coupon.validity">
+        <div ng-switch-default>
+            <p class="alert alert-danger" ng-if="coupon.validity == 'unvalid'">Zadali jste neplatný kód!</p>
+            <form class="form-inline" role="form" ng-submit="applyCoupon();">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="coupon.code" placeholder="Zadejte kód" />
+                </div>
+                <button type="submit" class="btn btn-primary">Vložit</button>
+            </form>
+        </div>
+        <div ng-switch-when="valid">
+            <p class="alert alert-success">K Vaší objednávce byl uplatněn slevový kupón v hodnotě <strong>{{ coupon.amount }} Kč</strong>.</p>
+            <a class="alert-link" ng-click="removeCoupon();">odebrat kupón</a>
+        </div>
+    </div>
+</section>

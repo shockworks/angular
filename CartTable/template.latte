@@ -1,0 +1,31 @@
+<section class="cart-table-widget" ng-controller="CartTableController">
+    <table class="table cart-table">
+        <thead>
+            <tr>
+                <th class="cart-table-name">Název</th>
+                <th class="cart-table-count">počet</th>
+                <th class="cart-table-stock-availability">dostupnost</th>
+                <th class="cart-table-price">cena</th>
+                <th class="cart-table-remove"></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="item in cart.items">
+            <tr>
+                <td class="cart-table-name"><a><img class="img-rounded" data-src="holder.js/40x47" /><strong>{{ item.name }}</strong></a></td>
+                <td class="cart-table-count"><input type="text" ng-model="item.count" ng-if="!item.isCoupon" ng-change="updateItem(item);" /><span ng-if="item.isCoupon">{{ item.count }}</span> ks</td>
+                <td class="cart-table-stock-availability greenify">skladem</td>
+                <td class="cart-table-price">{{ item.price * item.count }} Kč</td>
+                <td class="cart-table-remove"><a class="cart-table-remove-btn" ng-click="removeItem(item.id);"><span class="glyphicon glyphicon-remove"></span></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="text-right">Celkový součet: <strong>{{ cart.getSum() }} Kč</strong></p>
+    <div class="cart-table-buttons row">
+        <div class="col-xs-6">
+            <a class="btn btn-link">Zpět do obchodu</a>
+        </div>
+        <div class="col-xs-6">
+            <a class="btn btn-primary">Pokračovat</a>
+        </div>
+    </div>
+</section>
